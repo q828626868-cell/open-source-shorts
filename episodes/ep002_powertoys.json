@@ -1,0 +1,20 @@
+{
+  "no": 2,
+  "accent": [88, 166, 255],
+  "hook": ["微軟自己做的", "Windows 神器", "你裝了嗎？"],
+  "name": "PowerToys",
+  "tag": "微軟開源　超過 30 個小工具",
+  "url": "github.com/microsoft/PowerToys",
+  "feat_title": "我最想推的三個",
+  "features": [["視窗釘選", "讓視窗固定在最上層"], ["螢幕抓字", "圖片和影片裡的字也能複製"], ["批次改名", "一次重新命名大量檔案"]],
+  "tip_label": "怎麼安裝",
+  "tip": ["GitHub 或 Microsoft Store", "這是 Windows 專用工具"],
+  "cta_at": 0.48,
+  "voice": [
+    "微软自己做的 Windows 神器，你装了吗？",
+    "它叫 PowerToys，微软开源，里面有超过三十个小工具。",
+    "可以把视窗钉在最上层，从图片或影片里直接复制文字，还能一次批次重新命名档案。",
+    "可以从 GitHub 或微软商店安装。追踪我，每周更新好用的开源专案。"
+  ],
+  "caption": "微軟自己做的 Windows 神器，你裝了嗎？👀\n\nPowerToys 是微軟開源的工具集，裡面有超過 30 個小工具：視窗釘選、螢幕抓字、批次改名都有。\n\n專案：github.com/microsoft/PowerToys\n（本片配音由 AI 合成）\n\n#開源 #GitHub #Windows #免費軟體 #電腦技巧"
+}

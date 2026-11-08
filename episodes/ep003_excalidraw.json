@@ -1,0 +1,20 @@
+{
+  "no": 3,
+  "accent": [188, 140, 255],
+  "hook": ["畫流程圖", "一定要裝軟體", "嗎？"],
+  "name": "Excalidraw",
+  "tag": "免費開源的手繪風白板",
+  "url": "github.com/excalidraw/excalidraw",
+  "feat_title": "打開瀏覽器就能畫",
+  "features": [["無限畫布", "圖形、箭頭、手繪都能畫"], ["即時協作", "一起畫，還有端對端加密"], ["匯出方便", "可存成 PNG 或 SVG"]],
+  "tip_label": "馬上試",
+  "tip": ["打開 excalidraw.com", "作品會自動存在瀏覽器"],
+  "cta_at": 0.52,
+  "voice": [
+    "画流程图，一定要装软体吗？",
+    "Excalidraw 是免费开源的手绘风白板。",
+    "画布无限大，图形和箭头都能画，可以和别人即时协作，完成后还能汇出 PNG 或 SVG。",
+    "打开 excalidraw 点 com 就能用，作品会自动存在浏览器。追踪我，每周更新好用的开源专案。"
+  ],
+  "caption": "畫流程圖，一定要裝軟體嗎？✏️\n\nExcalidraw 是免費開源的手繪風白板，打開瀏覽器就能畫，支援即時協作，也能匯出 PNG 或 SVG。\n\n專案：github.com/excalidraw/excalidraw\n線上使用：excalidraw.com\n（本片配音由 AI 合成）\n\n#開源 #GitHub #免費軟體 #流程圖 #實用工具"
+}
