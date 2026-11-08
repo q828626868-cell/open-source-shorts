@@ -229,7 +229,7 @@ def k_export(img, d, t, v, sc):
         if e > 0:
             x = 775
             y = 650 + i * 150 + (1 - e) * 40
-            d.rounded_rectangle((x, y, x + 250, y + 110), 22, fill=tuple(int(250 + (ACC[c] - 250) * e) for c in range(3)))
+            d.rounded_rectangle((x, y, x + 195, y + 110), 22, fill=tuple(int(250 + (ACC[c] - 250) * e) for c in range(3)))
             d.text((x + 97, y + 55), l, font=R.font(50), fill=(255, 255, 255), anchor="mm")
     d.text((W / 2, 1345), "示意畫面", font=R.font(32, R.MED), fill=R.MUTED, anchor="mm")
 
