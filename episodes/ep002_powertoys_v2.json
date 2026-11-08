@@ -1,0 +1,12 @@
+{
+  "no": 2,
+  "accent": [88, 166, 255],
+  "scenes": [
+    {"kind": "windows", "title": "視窗又被蓋住了？", "voice": "查资料的时候，视窗一直被盖住？", "subs": ["查資料的時候", "視窗一直被蓋住？"]},
+    {"kind": "pin", "title": "PowerToys", "subtitle": "微軟開源的 Windows 工具集", "keys": ["Win", "Ctrl", "T"], "voice": "微软开源的 PowerToys，按 Win、Ctrl、T，就能把视窗钉在最上层。", "subs": ["微軟開源的 PowerToys", "按 Win + Ctrl + T", "把視窗釘在最上層"]},
+    {"kind": "ocr", "title": "圖片裡的字，直接抓", "lines": ["週五交期末報告", "預算：三萬元", "記得帶延長線"], "keys": ["Win", "Shift", "T"], "voice": "图片里的字想复制？按 Win、Shift、T，框起来就能抓。", "subs": ["圖片裡的字想複製？", "按 Win + Shift + T", "框起來就能抓"]},
+    {"kind": "gif", "title": "一堆檔案要改名", "frames": "assets/pt_rename", "fps": 12, "credit": "實際畫面：Microsoft PowerToys 文件（CC BY 4.0）", "voice": "一堆档案要改名，PowerRename 可以一次搞定。", "subs": ["一堆檔案要改名", "PowerRename 一次搞定"]},
+    {"kind": "cta", "title": "還有超過 30 個小工具", "image": "assets/pt-hero.png", "url": "github.com/microsoft/PowerToys", "cta_at": 0.45, "credit": "圖片：microsoft/PowerToys（MIT）", "voice": "全部都在同一个工具里，总共超过三十个小工具。追踪我，每周挖一个好用的开源专案。", "subs": ["全部在同一個工具裡", "總共超過 30 個小工具", "追蹤我", "每週挖一個好用的開源專案"]}
+  ],
+  "caption": "視窗一直被蓋住？圖片裡的字想複製？一堆檔案要改名？\n\n微軟開源的 PowerToys 全部幫你解決，裡面有超過 30 個小工具。\n⌨️ Win+Ctrl+T 把視窗釘在最上層\n⌨️ Win+Shift+T 抓圖片裡的文字\n\n先收藏，下次要用就找得到 📌\n專案：github.com/microsoft/PowerToys\n（本片配音由 AI 合成）\n\n#開源 #GitHub #Windows #免費軟體 #電腦技巧"
+}
