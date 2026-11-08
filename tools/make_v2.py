@@ -139,7 +139,102 @@ def k_cta(img, d, t, v, sc):
         d.text((W / 2, 1320), sc["credit"], font=R.font(32, R.MED), fill=R.MUTED, anchor="mm")
 
 
-KINDS = {"windows": k_windows, "pin": k_pin, "ocr": k_ocr, "gif": k_gif, "image": k_image, "cta": k_cta}
+
+INK_D = (30, 30, 36)
+
+
+def wline(d, a, b, prog, col, seed, w=7):
+    n = 16
+    pts = []
+    for i in range(int(n * max(0, min(1, prog))) + 1):
+        f = i / n
+        off = math.sin(f * 7 + seed) * 4 + math.sin(f * 17 + seed * 2) * 2
+        pts.append((a[0] + (b[0] - a[0]) * f + off, a[1] + (b[1] - a[1]) * f - off))
+    if len(pts) > 1:
+        d.line(pts, fill=col, width=w, joint="curve")
+
+
+def wbox(d, x, y, w, h, prog, col, label, seed):
+    c = [(x, y), (x + w, y), (x + w, y + h), (x, y + h), (x, y)]
+    for i in range(4):
+        wline(d, c[i], c[i + 1], prog * 4 - i, col, seed + i)
+    if prog >= 1:
+        d.text((x + w / 2, y + h / 2), label, font=R.font(54, R.MED), fill=INK_D, anchor="mm")
+
+
+def arrow(d, a, b, prog, seed):
+    wline(d, a, b, prog, INK_D, seed)
+    if prog >= 1:
+        wline(d, b, (b[0] - 22, b[1] - 28), 1, INK_D, seed + 1)
+        wline(d, b, (b[0] + 22, b[1] - 28), 1, INK_D, seed + 2)
+
+
+def paper(d, note=True):
+    d.rounded_rectangle((90, 540, 990, 1300), 26, fill=(250, 249, 245))
+    if note:
+        d.text((W / 2, 1345), "示意畫面", font=R.font(32, R.MED), fill=R.MUTED, anchor="mm")
+
+
+def flow(d, f, cols=None):
+    cols = cols or ((105, 80, 210), (20, 140, 110), (210, 95, 50))
+    labels = [(330, 600, "有個想法"), (330, 835, "畫成流程圖"), (330, 1070, "分享給大家")]
+    for i, (x, y, l) in enumerate(labels):
+        wbox(d, x, y, 420, 150, (f - i * 0.36) / 0.26, cols[i], l, i * 3 + 1)
+    arrow(d, (540, 752), (540, 830), (f - 0.26) / 0.1, 11)
+    arrow(d, (540, 987), (540, 1065), (f - 0.62) / 0.1, 13)
+
+
+def k_install(img, d, t, v, sc):
+    title(d, sc["title"], col=R.RED, size=84)
+    win(d, 150, 640, 780, 480, "安裝程式", (70, 80, 100), lines=0)
+    d.text((W / 2, 830), "正在安裝…", font=R.font(66), fill=R.INK, anchor="mm")
+    d.rounded_rectangle((230, 930, 850, 975), 22, fill=(60, 66, 78))
+    d.rounded_rectangle((230, 930, 230 + 620 * (0.08 + 0.05 * min(1, t / max(v, 1))), 975), 22, fill=R.RED)
+    d.text((W / 2, 1040), "剩餘時間：計算中", font=R.font(46, R.MED), fill=R.MUTED, anchor="mm")
+
+
+def k_sketch(img, d, t, v, sc):
+    title(d, sc["title"], y=385, size=118, col=ACC)
+    d.text((W / 2, 495), sc["subtitle"], font=R.font(52, R.MED), fill=R.INK, anchor="mm")
+    paper(d)
+    flow(d, min(1, t / (v * 0.92)))
+
+
+def cursor(d, x, y, col, name):
+    d.polygon([(x, y), (x, y + 54), (x + 15, y + 41), (x + 38, y + 44)], fill=col)
+    tw = d.textlength(name, font=R.font(36, R.MED))
+    d.rounded_rectangle((x + 34, y + 44, x + 34 + tw + 32, y + 100), 14, fill=col)
+    d.text((x + 50 + tw / 2, y + 72), name, font=R.font(36, R.MED), fill=(255, 255, 255), anchor="mm")
+
+
+def k_collab(img, d, t, v, sc):
+    title(d, sc["title"], y=420)
+    paper(d)
+    flow(d, 1)
+    q = min(1, t / (v * 0.85))
+    wbox(d, 790, 600, 165, 150, q * 1.1, (40, 120, 220), "A", 21)
+    wline(d, (170, 880), (300, 880), q * 1.4, (200, 60, 120), 25)
+    wline(d, (170, 930), (300, 930), q * 1.4 - 0.4, (200, 60, 120), 27)
+    cursor(d, 610 + q * 190, 760 + math.sin(t * 2) * 25, (40, 120, 220), "同事 A")
+    cursor(d, 300 - q * 40 + math.sin(t * 2.4) * 30, 945 + q * 30, (200, 60, 120), "同事 B")
+
+
+def k_export(img, d, t, v, sc):
+    title(d, sc["title"], y=420)
+    paper(d, note=False)
+    flow(d, 1)
+    d.rounded_rectangle((90, 540, 990, 1300), 26, outline=ACC, width=6)
+    for i, l in enumerate(sc["chips"]):
+        e = R.ease(t, v * (0.2 + i * 0.2))
+        if e > 0:
+            x = 775
+            y = 650 + i * 150 + (1 - e) * 40
+            d.rounded_rectangle((x, y, x + 250, y + 110), 22, fill=tuple(int(250 + (ACC[c] - 250) * e) for c in range(3)))
+            d.text((x + 97, y + 55), l, font=R.font(50), fill=(255, 255, 255), anchor="mm")
+    d.text((W / 2, 1345), "示意畫面", font=R.font(32, R.MED), fill=R.MUTED, anchor="mm")
+
+
+KINDS = {"install": k_install, "sketch": k_sketch, "collab": k_collab, "export": k_export, "windows": k_windows, "pin": k_pin, "ocr": k_ocr, "gif": k_gif, "image": k_image, "cta": k_cta}
 
 
 def caption(img, d, t, v, subs):

@@ -1,0 +1,12 @@
+{
+  "no": 3,
+  "accent": [162, 112, 247],
+  "scenes": [
+    {"kind": "install", "title": "只是想畫張流程圖⋯", "voice": "只是想画一张流程图，还要安装软体？", "subs": ["只是想畫一張流程圖", "還要安裝軟體？"]},
+    {"kind": "sketch", "title": "Excalidraw", "subtitle": "免費開源的手繪風白板", "voice": "Excalidraw 打开网页就能画，出来的图还是手绘风。", "subs": ["Excalidraw 打開網頁就能畫", "出來的圖還是手繪風"]},
+    {"kind": "collab", "title": "和同事一起改", "voice": "想和别人一起改？开启即时协作，大家同时画。", "subs": ["想和別人一起改？", "開啟即時協作", "大家同時畫"]},
+    {"kind": "export", "title": "畫完直接帶走", "chips": ["PNG", "SVG"], "voice": "画完可以汇出 PNG 或 SVG，作品还会自动存在浏览器。", "subs": ["畫完可以匯出 PNG 或 SVG", "作品還會自動存在瀏覽器"]},
+    {"kind": "cta", "title": "excalidraw.com", "url": "github.com/excalidraw/excalidraw", "cta_at": 0.42, "voice": "网址是 excalidraw 点 com，免费而且开源。追踪我，每周挖一个好用的开源专案。", "subs": ["網址是 excalidraw.com", "免費而且開源", "追蹤我", "每週挖一個好用的開源專案"]}
+  ],
+  "caption": "只是想畫張流程圖，還要裝軟體？✏️\n\nExcalidraw 打開網頁就能畫，手繪風的圖超適合放簡報和筆記。\n✅ 無限畫布\n✅ 即時協作\n✅ 匯出 PNG、SVG\n\n先收藏，下次要畫圖就用得到 📌\n線上使用：excalidraw.com\n專案：github.com/excalidraw/excalidraw\n（本片配音由 AI 合成，部分畫面為示意）\n\n#開源 #GitHub #免費軟體 #流程圖 #實用工具"
+}
