@@ -1,0 +1,70 @@
+{
+ "no": 5,
+ "accent": [
+  90,
+  170,
+  255
+ ],
+ "label_last": true,
+ "scenes": [
+  {
+   "kind": "hook",
+   "big": [
+    "Windows 也能",
+    "空白鍵預覽"
+   ],
+   "visual": "explorer",
+   "voice": "按空白键就预览。",
+   "subs": [
+    "按空白鍵就預覽"
+   ]
+  },
+  {
+   "kind": "demo",
+   "title": "選好檔案，按空白鍵",
+   "keys": [
+    "Space"
+   ],
+   "visual": "explorer",
+   "voice": "在档案总管选好档案，按空白键，马上预览。",
+   "subs": [
+    "在檔案總管選好檔案",
+    "按空白鍵",
+    "馬上預覽"
+   ]
+  },
+  {
+   "kind": "demo",
+   "title": "方向鍵換下一個",
+   "keys": [
+    "↑",
+    "↓"
+   ],
+   "visual": "explorer",
+   "arrows": true,
+   "voice": "用方向键换下一个，再按一次空白键就关掉。",
+   "subs": [
+    "用方向鍵換下一個",
+    "再按一次空白鍵就關掉"
+   ],
+   "keys_sep": "或"
+  },
+  {
+   "kind": "cta2",
+   "name": "QuickLook",
+   "subtitle": "Windows 的空白鍵預覽工具",
+   "urls": [
+    "github.com/QL-Win/QuickLook"
+   ],
+   "credit": "本片畫面為示意",
+   "voice": "QuickLook，网址在说明栏。追踪我，每天一个开源好物。",
+   "subs": [
+    "QuickLook",
+    "網址在說明欄",
+    "追蹤我",
+    "每天一個開源好物"
+   ]
+  }
+ ],
+ "caption": "想看一眼檔案，還要等程式慢慢打開？\n\nQuickLook 讓 Windows 也能像 Mac 一樣：選好檔案按空白鍵，馬上預覽。\n⌨️ Space：預覽，再按一次或 Esc 關閉\n⌨️ 方向鍵：切換下一個檔案\n⌨️ Enter：直接開啟檔案\n圖片、影片、文件、程式碼都能看，也可以從 Microsoft Store 安裝。\n\n先收藏，換新電腦時記得裝 📌\n專案：github.com/QL-Win/QuickLook\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #Windows #免費軟體 #電腦技巧"
+}

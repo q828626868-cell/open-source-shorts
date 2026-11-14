@@ -48,7 +48,7 @@ def win(d, x, y, w, h, title, col, a=1.0, border=None, lines=4):
             d.rounded_rectangle((x + 40, ly, x + 40 + lw, ly + 20), 10, fill=R.mix((92, 100, 114), a))
 
 
-def keycaps(d, keys, y, a):
+def keycaps(d, keys, y, a, sep="+"):
     fnt = R.font(66)
     ws = [max(120, d.textlength(k, font=fnt) + 70) for k in keys]
     total = sum(ws) + 76 * (len(keys) - 1)
@@ -58,7 +58,7 @@ def keycaps(d, keys, y, a):
         d.text((x + ws[i] / 2, y), k, font=fnt, fill=R.mix(R.INK, a), anchor="mm")
         x += ws[i]
         if i < len(keys) - 1:
-            d.text((x + 38, y), "+", font=R.font(58), fill=R.mix(R.MUTED, a), anchor="mm")
+            d.text((x + 38, y), sep, font=R.font(58 if sep == "+" else 44), fill=R.mix(R.MUTED, a), anchor="mm")
             x += 76
 
 
@@ -500,7 +500,7 @@ def k_hook(img, d, t, v, sc):
 def k_demo(img, d, t, v, sc):
     d.text((W / 2, 330), sc["title"], font=fit_font(d, sc["title"], 84, 980), fill=R.INK, anchor="mm")
     if sc.get("keys"):
-        keycaps(d, sc["keys"], 495, 1.0)
+        keycaps(d, sc["keys"], 495, 1.0, sc.get("keys_sep", "+"))
     elif sc.get("chips"):
         fnt = R.font(46)
         ws = [d.textlength(c, font=fnt) + 56 for c in sc["chips"]]
