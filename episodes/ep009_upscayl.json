@@ -1,0 +1,12 @@
+{
+  "no": 9,
+  "accent": [60, 200, 230],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["模糊小圖", "AI 放大變清楚"], "visual": "upscale", "view": "wipe", "voice": "模糊照片变清楚。", "subs": ["模糊照片變清楚"]},
+    {"kind": "demo", "title": "內建模型直接放大 4 倍", "visual": "upscale", "view": "grow", "voice": "选一张图，挑一个 AI 模型，内建预设放大四倍。", "subs": ["選一張圖", "挑一個 AI 模型", "內建預設放大四倍"]},
+    {"kind": "demo", "title": "三大系統都能用", "chips": ["Windows", "macOS", "Linux"], "visual": "upscale", "view": "wipe", "voice": "Windows、Mac、Linux 都能用，要有支援 Vulkan 的显示卡。", "subs": ["Windows、Mac、Linux 都能用", "要有支援 Vulkan 的顯示卡"]},
+    {"kind": "cta2", "name": "Upscayl", "subtitle": "免費開源的 AI 圖片放大工具", "urls": ["upscayl.org", "github.com/upscayl/upscayl"], "credit": "本片畫面為示意", "voice": "Upscayl，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Upscayl", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "舊照片、小圖一放大就糊掉？🖼️\n\nUpscayl 是免費開源的 AI 圖片放大工具，用 AI 補出細節，把低解析度圖片放大。\n✅ 選一張圖、挑一個 AI 模型就能放大\n✅ 內建模型預設放大 4 倍\n✅ Windows、macOS、Linux 都能用\n⚠️ 需要支援 Vulkan 的顯示卡，多數內建顯示晶片可能無法使用。\nAI 是推測細節，重要文件請以原圖為準。\n\n先收藏，下次要放大圖片就用得到 📌\n官網：upscayl.org\n專案：github.com/upscayl/upscayl\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #AI #免費軟體 #修圖"
+}

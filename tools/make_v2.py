@@ -406,7 +406,7 @@ def v_upscale(img, d, t, v, sc, hook=False):
     sharp, low = _cache[key]
     x0, y0 = 90, TOP + 10
     if sc.get("view", "wipe") == "wipe":
-        div = int(w * (0.5 + 0.32 * math.sin(t * 1.6 + (1.2 if hook else 0))))
+        div = int(w * (0.5 + 0.32 * math.sin(t * 1.6)))
         img.paste(low.crop((0, 0, div, h)), (x0, y0))
         img.paste(sharp.crop((div, 0, w, h)), (x0 + div, y0))
         d.line((x0 + div, y0, x0 + div, y0 + h), fill=WHITE, width=8)
@@ -424,8 +424,8 @@ def v_upscale(img, d, t, v, sc, hook=False):
         src = low if e < 0.6 else sharp
         im = src.resize((sw, sh), Image.BILINEAR)
         img.paste(im, (x0 + (w - sw) // 2, y0 + (h - sh) // 2))
-        d.rounded_rectangle((W / 2 - 90, y0 + h + 10, W / 2 + 90, y0 + h + 90), 24, fill=ACC)
-        d.text((W / 2, y0 + h + 50), "× 4", font=R.font(56), fill=(10, 14, 20), anchor="mm")
+        d.rounded_rectangle((x0 + w - 200, y0 + h - 100, x0 + w - 20, y0 + h - 20), 24, fill=ACC)
+        d.text((x0 + w - 110, y0 + h - 60), "× 4", font=R.font(56), fill=(10, 14, 20), anchor="mm")
     d.rectangle((x0, y0, x0 + w, y0 + h), outline=ACC, width=5)
     note(d, sc.get("note", "示意畫面"))
 
