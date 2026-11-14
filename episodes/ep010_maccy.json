@@ -1,0 +1,12 @@
+{
+  "no": 10,
+  "accent": [150, 220, 90],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["複製過的東西", "全都找得回來"], "visual": "cliplist", "items": ["會議連結 meet.example.com", "訂單編號 A1024", "週五下午三點開會", "收件地址 ○○路 1 號"], "voice": "复制过的全找回。", "subs": ["複製過的全找回"]},
+    {"kind": "demo", "title": "叫出剪貼簿歷史", "keys": ["Shift", "⌘", "C"], "visual": "cliplist", "query": "訂單", "items": ["會議連結 meet.example.com", "訂單編號 A1024", "週五下午三點開會", "收件地址 ○○路 1 號"], "voice": "按 Shift、Command、C，打字就能搜寻。", "subs": ["按 Shift + Command + C", "打字就能搜尋"]},
+    {"kind": "demo", "title": "選好直接貼上", "keys": ["Option", "Enter"], "visual": "cliplist", "query": "訂單", "items": ["會議連結 meet.example.com", "訂單編號 A1024", "週五下午三點開會", "收件地址 ○○路 1 號"], "voice": "按 Enter 复制，按 Option 加 Enter 直接贴上。", "subs": ["按 Enter 複製", "按 Option + Enter 直接貼上"]},
+    {"kind": "cta2", "name": "Maccy", "subtitle": "Mac 的剪貼簿歷史工具", "urls": ["maccy.app", "github.com/p0deje/Maccy"], "credit": "本片畫面為示意", "voice": "Maccy，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Maccy", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "剛剛複製的東西，一不小心就被蓋掉？📋\n\nMaccy 是 Mac 上免費開源的剪貼簿工具，會記住你複製過的內容。\n⌨️ Shift+Command+C：叫出剪貼簿歷史\n⌨️ 直接打字搜尋，按 Enter 複製\n⌨️ Option+Enter：選好直接貼上\n需要 macOS Sonoma 14 以上，也可以用 Homebrew 安裝。\n⚠️ 官方網站只有 maccy.app，小心假冒網站。\n\n先收藏，用 Mac 的朋友一定用得到 📌\n官網：maccy.app\n專案：github.com/p0deje/Maccy\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #Mac #免費軟體 #電腦技巧"
+}
