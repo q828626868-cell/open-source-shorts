@@ -485,7 +485,8 @@ def v_cliplist(img, d, t, v, sc, hook=False):
             d.rounded_rectangle((x0 + 16, y, x1 - 16, y + 90), 14, fill=ACC)
         f = fit_font(d, s, 42, x1 - x0 - 200, R.MED)
         d.text((x0 + 50, y + 45), s, font=f, fill=(170, 172, 180) if dim else DARK_INK, anchor="lm")
-        d.text((x1 - 50, y + 45), f"⌘{i + 1}", font=R.font(34, R.MED), fill=(110, 114, 124), anchor="rm")
+        if sc.get("hints", True):
+            d.text((x1 - 50, y + 45), f"⌘{i + 1}", font=R.font(34, R.MED), fill=(110, 114, 124), anchor="rm")
     note(d, sc.get("note", "示意畫面"))
 
 

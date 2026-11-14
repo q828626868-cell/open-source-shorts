@@ -1,0 +1,81 @@
+{
+ "no": 7,
+ "accent": [
+  255,
+  170,
+  60
+ ],
+ "label_last": true,
+ "scenes": [
+  {
+   "kind": "hook",
+   "big": [
+    "打幾個字",
+    "自動變整段"
+   ],
+   "visual": "typing",
+   "typed": ":sig",
+   "result": "王小明｜0900-000-000",
+   "result_tag": "整段簽名",
+   "voice": "几个字变整段。",
+   "subs": [
+    "幾個字變整段"
+   ],
+   "note": "示意畫面（自訂範例）"
+  },
+  {
+   "kind": "demo",
+   "title": "打 :date 就變日期",
+   "visual": "typing",
+   "typed": ":date",
+   "result": "11/18/2026",
+   "result_tag": "今天日期",
+   "voice": "装好以后，打冒号 date，马上变成今天日期。",
+   "subs": [
+    "裝好以後，打 :date",
+    "馬上變成今天日期"
+   ]
+  },
+  {
+   "kind": "demo",
+   "title": "忘了關鍵字？叫出搜尋列",
+   "keys": [
+    "Alt",
+    "Space"
+   ],
+   "visual": "cliplist",
+   "hints": false,
+   "query": "sig",
+   "items": [
+    ":date　今天日期",
+    ":sig　我的簽名",
+    ":hello　Hi There!"
+   ],
+   "note": "示意畫面（Mac 為 Option + Space）",
+   "voice": "忘了关键字？按 Alt 加空白键，打开搜寻列。",
+   "subs": [
+    "忘了關鍵字？",
+    "按 Alt + 空白鍵",
+    "打開搜尋列"
+   ]
+  },
+  {
+   "kind": "cta2",
+   "name": "Espanso",
+   "subtitle": "跨平台的文字自動展開工具",
+   "urls": [
+    "espanso.org",
+    "github.com/espanso/espanso"
+   ],
+   "credit": "本片畫面為示意",
+   "voice": "Espanso，网址在说明栏。追踪我，每天一个开源好物。",
+   "subs": [
+    "Espanso",
+    "網址在說明欄",
+    "追蹤我",
+    "每天一個開源好物"
+   ]
+  }
+ ],
+ "caption": "同一段地址、簽名，每天重打好幾次？⌨️\n\nEspanso 會偵測你打的關鍵字，自動換成整段文字。\n✅ 裝好後打 :date，自動變成今天日期\n✅ 常用句子、簽名可以自己設定關鍵字\n✅ 按 Alt+Space（Mac 是 Option+Space）打開搜尋列\nWindows、macOS、Linux 都能用，資料完全存在本機。\n\n先收藏，設定好每天少打很多字 📌\n官網：espanso.org\n專案：github.com/espanso/espanso\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #免費軟體 #效率 #電腦技巧"
+}
