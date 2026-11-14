@@ -1,0 +1,12 @@
+{
+  "no": 4,
+  "accent": [63, 210, 160],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["手機 → 電腦", "開網頁就能傳"], "visual": "devices", "screen": "send", "url_bar": "pairdrop.net", "item": "照片.jpg", "voice": "开网页就能传档。", "subs": ["開網頁就能傳檔"]},
+    {"kind": "demo", "title": "兩台都打開 pairdrop.net", "visual": "devices", "screen": "send", "url_bar": "pairdrop.net", "item": "照片.jpg", "voice": "两台都打开 pairdrop 点 net，同一个 Wi-Fi，就会看到对方。", "subs": ["兩台都打開 pairdrop.net", "同一個 Wi-Fi", "就會看到對方"]},
+    {"kind": "demo", "title": "照片、文件、文字都能傳", "chips": ["照片", "文件", "文字"], "visual": "devices", "screen": "send", "url_bar": "pairdrop.net", "item": "報告.pdf", "voice": "照片、文件、文字都能传，有浏览器就能用。", "subs": ["照片、文件、文字都能傳", "有瀏覽器就能用"]},
+    {"kind": "cta2", "name": "PairDrop", "subtitle": "免安裝的網頁互傳工具", "urls": ["pairdrop.net", "github.com/schlagmichdoch/PairDrop"], "credit": "本片畫面為示意", "voice": "PairDrop，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["PairDrop", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "手機照片要傳電腦，還在傳給自己？📲\n\nPairDrop 打開網頁就能互傳，不用另外裝 App。\n✅ 兩台裝置都打開 pairdrop.net\n✅ 同一個 Wi-Fi 下會自動看到對方\n✅ 照片、文件、文字都能傳\n不在同一個網路？也能用 6 位數代碼配對。\n\n先收藏，下次要傳檔就找得到 📌\n網址：pairdrop.net\n專案：github.com/schlagmichdoch/PairDrop\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #免費軟體 #傳檔 #手機技巧"
+}
