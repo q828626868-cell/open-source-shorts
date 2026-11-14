@@ -337,7 +337,7 @@ def v_devices(img, d, t, v, sc, hook=False):
         file_chip(d, x, y, sc.get("item", "照片.jpg"), 1 if p < 0.85 else max(0, 1 - (p - 0.85) / 0.15))
     else:
         fn = screen_codes if mode == "codes" else screen_note
-        fn(d, pb, t, 0.95)
+        fn(d, pb, t, 0.82 if mode == "codes" else 0.95)
         fn(d, lb, t, 1.0)
         p = (t / 1.2) % 1
         for k in range(3):

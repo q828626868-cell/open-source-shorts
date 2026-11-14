@@ -1,0 +1,12 @@
+{
+  "no": 6,
+  "accent": [170, 130, 255],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["換手機", "驗證碼還在"], "visual": "devices", "screen": "codes", "voice": "验证码不怕不见。", "subs": ["驗證碼不怕不見"]},
+    {"kind": "demo", "title": "登入同一個帳號就同步", "chips": ["iOS", "Android", "Windows", "Mac"], "visual": "devices", "screen": "codes", "voice": "登入同一个帐号，手机电脑都看得到，还有端对端加密。", "subs": ["登入同一個帳號", "手機電腦都看得到", "還有端對端加密"]},
+    {"kind": "demo", "title": "不想註冊？離線也能用", "chips": ["離線可用", "永久免費"], "visual": "devices", "screen": "codes", "voice": "不想注册也能离线用，官方说会永久免费。", "subs": ["不想註冊也能離線用", "官方說會永久免費"]},
+    {"kind": "cta2", "name": "Ente Auth", "subtitle": "開源的兩步驟驗證 App", "urls": ["github.com/ente/ente"], "credit": "本片畫面為示意", "voice": "Ente Auth，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Ente Auth", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "換手機最怕兩步驟驗證碼全部不見？🔐\n\nEnte Auth 是開源的驗證碼 App，驗證碼可以加密備份，換手機登入就回來。\n✅ iOS、Android、Windows、Mac、Linux 都有\n✅ 端對端加密的雲端備份與多裝置同步\n✅ 不想註冊也能離線使用\n官方表示 Ente Auth 會永久免費。\n\n先收藏，換手機前記得看 📌\n專案：github.com/ente/ente\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #資安 #兩步驟驗證 #手機技巧"
+}
