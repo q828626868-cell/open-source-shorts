@@ -1,0 +1,12 @@
+{
+  "no": 8,
+  "accent": [255, 120, 140],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["手機記的筆記", "電腦也看得到"], "visual": "devices", "screen": "note", "voice": "手机电脑同步笔记。", "subs": ["手機電腦同步筆記"]},
+    {"kind": "demo", "title": "選一個雲端來同步", "chips": ["Dropbox", "OneDrive", "Nextcloud"], "visual": "devices", "screen": "note", "voice": "选 Dropbox 或 OneDrive 来同步，改完会自动在背景同步。", "subs": ["選 Dropbox 或 OneDrive 來同步", "改完會自動在背景同步"]},
+    {"kind": "demo", "title": "沒網路也能寫", "chips": ["離線優先", "端對端加密"], "visual": "devices", "screen": "note", "voice": "没网路也能写，同步还能开端对端加密。", "subs": ["沒網路也能寫", "同步還能開端對端加密"]},
+    {"kind": "cta2", "name": "Joplin", "subtitle": "開源的跨裝置筆記 App", "urls": ["joplinapp.org", "github.com/laurent22/joplin"], "credit": "本片畫面為示意", "voice": "Joplin，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Joplin", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "手機記的筆記，回到電腦又找不到？📝\n\nJoplin 是免費開源的筆記和待辦 App，Windows、macOS、Linux、Android、iOS 都有。\n✅ 可用 Dropbox、OneDrive、Nextcloud 或 Joplin Cloud 同步\n✅ 離線優先，沒網路也能看、能寫\n✅ 同步可以開啟端對端加密\n筆記是 Markdown 格式，也能匯入 Evernote 匯出的筆記。\n\n先收藏，想換筆記 App 時用得到 📌\n官網：joplinapp.org\n專案：github.com/laurent22/joplin\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #筆記 #免費軟體 #手機技巧"
+}
