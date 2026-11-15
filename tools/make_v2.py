@@ -551,7 +551,257 @@ def v_mirror(img, d, t, v, sc, hook=False):
     note(d, sc.get("note", "示意畫面"))
 
 
-VISUALS = {"devices": v_devices, "typing": v_typing, "upscale": v_upscale, "explorer": v_explorer, "cliplist": v_cliplist, "mirror": v_mirror}
+def phase(t, v, hook, lead=0.6):
+    period = max(2.4, v * 0.95)
+    return ((t + (period * lead if hook else 0)) / period) % 1
+
+
+def pill(d, x, y, s, fill, ink=(10, 14, 20), size=40, anchor="mm"):
+    f = R.font(size)
+    tw = d.textlength(s, font=f)
+    if anchor == "lm":
+        x += tw / 2 + 24
+    d.rounded_rectangle((x - tw / 2 - 24, y - size * 0.85, x + tw / 2 + 24, y + size * 0.85), size * 0.6, fill=fill)
+    d.text((x, y), s, font=f, fill=ink, anchor="mm")
+
+
+def v_compress(img, d, t, v, sc, hook=False):
+    """Same picture, much smaller file: two size bars."""
+    p = phase(t, v, hook)
+    w, h = 720, 430
+    key = ("scenery", w, h)
+    if key not in _cache:
+        _cache[key] = scenery(w, h)
+    x0, y0 = (W - w) // 2, TOP + 40
+    img.paste(_cache[key], (x0, y0))
+    d.rectangle((x0, y0, x0 + w, y0 + h), outline=ACC, width=5)
+    url = sc.get("url_bar")
+    if url:
+        d.rounded_rectangle((x0, y0 - 60, x0 + w, y0 - 8), 14, fill=(48, 54, 66))
+        d.text((W / 2, y0 - 34), url, font=R.font(32, R.MED), fill=R.INK, anchor="mm")
+    e = 1 - (1 - min(1, p / 0.5)) ** 3
+    for i, (lab, size, frac, col) in enumerate([("原圖", sc["before"], 1.0, (120, 126, 138)), ("壓縮後", sc["after"], sc.get("ratio", 0.15), ACC)]):
+        y = y0 + h + 70 + i * 100
+        d.text((x0, y), lab, font=R.font(40), fill=R.INK, anchor="lm")
+        bw = (w - 360) * (frac if i == 0 else 1 - (1 - frac) * e)
+        d.rounded_rectangle((x0 + 160, y - 26, x0 + 160 + bw, y + 26), 14, fill=col)
+        d.text((x0 + w, y), size if i == 0 or e > 0.95 else "…", font=R.font(44), fill=col if i else R.INK, anchor="rm")
+    note(d, sc.get("note", "示意畫面"))
+
+
+def mac_screen(d, box):
+    x0, y0, x1, y1 = box
+    d.rounded_rectangle(box, 18, fill=(70, 96, 140))
+    d.rectangle((x0 + 6, y0 + 6, x1 - 6, y0 + 40), fill=(30, 34, 42))
+    return (x0 + 6, y0 + 40, x1 - 6, y1 - 6)
+
+
+def mac_window(d, b, name, col, a=1.0):
+    x0, y0, x1, y1 = b
+    d.rounded_rectangle(b, 12, fill=R.mix((246, 247, 250), a), outline=R.mix((40, 44, 52), a), width=2)
+    d.rounded_rectangle((x0, y0, x1, y0 + 44), 12, fill=R.mix(col, a))
+    for k, c in enumerate([(255, 95, 86), (255, 189, 46), (39, 201, 63)]):
+        d.ellipse((x0 + 16 + k * 26, y0 + 14, x0 + 32 + k * 26, y0 + 30), fill=R.mix(c, a))
+    d.text((x0 + 100, y0 + 22), name, font=fit_font(d, name, 26, max(40, x1 - x0 - 120), R.MED), fill=R.mix(WHITE, a), anchor="lm")
+    for i in range(4):
+        ly = y0 + 70 + i * 40
+        if ly + 14 < y1:
+            d.rounded_rectangle((x0 + 20, ly, x0 + 20 + (x1 - x0 - 40) * (1 - 0.18 * (i % 3)), ly + 14), 7, fill=R.mix((200, 204, 212), a))
+
+
+def lerp(a, b, k):
+    return tuple(a[i] + (b[i] - a[i]) * k for i in range(len(a)))
+
+
+def v_snap(img, d, t, v, sc, hook=False):
+    """Drag a window to the screen edge (or corner) and it snaps into place."""
+    p = phase(t, v, hook, 0.75)
+    S = (60, TOP, 1020, TOP + 600)
+    a = mac_screen(d, S)
+    x0, y0, x1, y1 = a
+    mx, my = (x0 + x1) / 2, (y0 + y1) / 2
+    corner = sc.get("target") == "corner"
+    target = (x0, y0, mx, my) if corner else (x0, y0, mx, y1)
+    other = (mx, y0, x1, my) if corner else (mx, y0, x1, y1)
+    mac_window(d, other, "瀏覽器", (90, 110, 220))
+    if corner:
+        mac_window(d, (x0, my, mx, y1), "音樂", (220, 120, 50))
+        mac_window(d, (mx, my, x1, y1), "筆記", (64, 150, 96))
+    start = (x0 + 200, y0 + 120, x0 + 640, y0 + 440)
+    edge = (x0 + 4, y0 + 4) if corner else (x0 + 4, y0 + 260)
+    if p < 0.45:
+        k = 1 - (1 - p / 0.45) ** 2
+        dx, dy = (edge[0] - (start[0] + 220)) * k, (edge[1] - (start[1] + 22)) * k
+        b = (start[0] + dx, start[1] + dy, start[2] + dx, start[3] + dy)
+        cur = (start[0] + 220 + dx, start[1] + 22 + dy)
+        if p > 0.3:
+            d.rounded_rectangle(target, 12, fill=R.mix(ACC, 0.35), outline=ACC, width=5)
+    else:
+        b = target
+        cur = edge
+    mac_window(d, b, sc.get("win", "文件"), (60, 70, 90))
+    cx, cy = cur
+    d.polygon([(cx, cy), (cx, cy + 40), (cx + 11, cy + 30), (cx + 20, cy + 48), (cx + 27, cy + 44), (cx + 18, cy + 27), (cx + 32, cy + 27)], fill=WHITE, outline=(10, 14, 20))
+    note(d, sc.get("note", "示意畫面"))
+
+
+def v_offline(img, d, t, v, sc, hook=False):
+    """Phone in airplane mode still reading an article, or a list of content to download."""
+    pb = phone_box(d, W / 2, TOP + 330, w=380, h=640)
+    x0, y0, x1, y1 = pb
+    d.rectangle(pb, fill=PAPER)
+    d.text((x0 + 18, y0 + 18), "飛航模式：開啟", font=R.font(26), fill=DARK_INK, anchor="lm")
+    if sc.get("screen", "article") == "article":
+        d.text((x0 + 22, y0 + 82), sc.get("article", "日月潭"), font=R.font(44), fill=DARK_INK, anchor="lm")
+        d.text((x0 + 22, y0 + 128), "離線維基百科", font=R.font(24, R.MED), fill=(120, 126, 138), anchor="lm")
+        key = ("scenery", int(x1 - x0 - 44), 150)
+        if key not in _cache:
+            _cache[key] = scenery(*key[1:])
+        img.paste(_cache[key], (int(x0 + 22), int(y0 + 160)))
+        for i in range(6):
+            ly = y0 + 340 + i * 36
+            d.rounded_rectangle((x0 + 22, ly, x1 - 22 - (i % 3) * 40, ly + 14), 7, fill=(200, 204, 212))
+        p = phase(t, v, hook)
+        a = 0.5 + 0.5 * math.sin(p * math.pi * 2)
+        pill(d, W / 2 + 260, TOP + 120, "沒網路", R.mix((248, 81, 73), 0.6 + 0.4 * a), WHITE, 40)
+    else:
+        d.text((x0 + 22, y0 + 82), "選擇要下載的內容", font=R.font(32), fill=DARK_INK, anchor="lm")
+        for i, s in enumerate(sc.get("items", ["維基百科", "維基詞典", "TED 演講"])):
+            y = y0 + 150 + i * 120
+            d.rounded_rectangle((x0 + 16, y, x1 - 16, y + 100), 16, fill=WHITE, outline=(210, 214, 222), width=2)
+            d.text((x0 + 40, y + 34), s, font=R.font(34), fill=DARK_INK, anchor="lm")
+            e = min(1, max(0, (t - i * 0.4) / 1.6))
+            d.rounded_rectangle((x0 + 40, y + 66, x1 - 40, y + 80), 7, fill=(220, 224, 230))
+            d.rounded_rectangle((x0 + 40, y + 66, x0 + 40 + (x1 - x0 - 80) * e, y + 80), 7, fill=ACC)
+    note(d, sc.get("note", "示意畫面"))
+
+
+TREE = [(0, 0, .5, .62, (214, 70, 60)), (.5, 0, .82, .4, (90, 110, 220)), (.82, 0, 1, .4, (64, 150, 96)),
+        (.5, .4, .75, .62, (220, 160, 50)), (.75, .4, 1, .62, (150, 90, 200)), (0, .62, .3, 1, (60, 160, 170)),
+        (.3, .62, .55, 1, (220, 120, 50)), (.55, .62, .78, 1, (110, 118, 130)), (.78, .62, 1, 1, (90, 170, 90))]
+
+
+def v_disk(img, d, t, v, sc, hook=False):
+    """Treemap of the drive plus the largest files list."""
+    x0, y0, x1, y1 = 90, TOP, 990, TOP + 360
+    hit = int(t / 0.9) % 3 if hook else 0
+    for i, (a, b, c, e, col) in enumerate(TREE):
+        r = (x0 + (x1 - x0) * a, y0 + (y1 - y0) * b, x0 + (x1 - x0) * c, y0 + (y1 - y0) * e)
+        d.rectangle(r, fill=col, outline=(13, 17, 23), width=4)
+        if i == [0, 1, 3][hit]:
+            d.rectangle(r, outline=WHITE, width=10)
+    files = sc.get("files", [("舊影片.mp4", "18.2 GB"), ("下載的安裝檔", "9.7 GB"), ("手機備份.zip", "6.1 GB")])
+    d.text((x0, y1 + 50), "最大的檔案", font=R.font(38), fill=R.MUTED, anchor="lm")
+    for i, (n, s) in enumerate(files):
+        y = y1 + 110 + i * 78
+        if i == hit:
+            d.rounded_rectangle((x0 - 10, y - 34, x1 + 10, y + 34), 12, fill=R.mix(ACC, 0.4))
+        d.rectangle((x0 + 4, y - 16, x0 + 36, y + 16), fill=[TREE[0][4], TREE[1][4], TREE[3][4]][i])
+        d.text((x0 + 60, y), n, font=R.font(40, R.MED), fill=R.INK, anchor="lm")
+        d.text((x1, y), s, font=R.font(40), fill=R.INK, anchor="rm")
+    note(d, sc.get("note", "示意畫面"))
+
+
+def v_convert(img, d, t, v, sc, hook=False):
+    """Source video -> preset -> new MP4 that plays on the phone."""
+    p = phase(t, v, hook)
+    src, dst = sc.get("src", "旅行影片.mkv"), sc.get("dst", "旅行影片.mp4")
+    y = TOP + 70
+    pill(d, W / 2, y, src, (110, 118, 130), WHITE, 46)
+    d.text((W / 2, y + 95), "↓", font=R.font(70), fill=ACC, anchor="mm")
+    py = y + 190
+    d.rounded_rectangle((200, py - 50, 880, py + 50), 18, fill=(40, 46, 58), outline=ACC, width=4)
+    d.text((230, py), "Preset", font=R.font(32, R.MED), fill=R.MUTED, anchor="lm")
+    d.text((850, py), sc.get("preset", "Fast 1080p30"), font=R.font(40), fill=R.INK, anchor="rm")
+    by = py + 120
+    e = min(1, p / 0.6)
+    d.rounded_rectangle((200, by - 18, 880, by + 18), 9, fill=(50, 56, 68))
+    d.rounded_rectangle((200, by - 18, 200 + 680 * e, by + 18), 9, fill=ACC)
+    d.text((W / 2, by + 60), "轉檔中…" if e < 1 else "完成！", font=R.font(36, R.MED), fill=R.INK, anchor="mm")
+    if e >= 1:
+        pill(d, W / 2 - 120, by + 170, dst, ACC, (10, 14, 20), 46)
+        pb = phone_box(d, W / 2 + 280, by + 170, w=110, h=190, edge=ACC)
+        d.rectangle(pb, fill=(30, 34, 42))
+        cx, cy = (pb[0] + pb[2]) / 2, (pb[1] + pb[3]) / 2
+        d.polygon([(cx - 14, cy - 20), (cx - 14, cy + 20), (cx + 20, cy)], fill=WHITE)
+    note(d, sc.get("note", "示意畫面"))
+
+
+def v_cards(img, d, t, v, sc, hook=False):
+    """Flashcard that flips, with review intervals that get longer."""
+    p = phase(t, v, hook)
+    pb = phone_box(d, W / 2 - 180, TOP + 320, w=340, h=600)
+    x0, y0, x1, y1 = pb
+    d.rectangle(pb, fill=PAPER)
+    front, back = sc.get("front", "apple"), sc.get("back", "蘋果")
+    flip = p > 0.45
+    d.rounded_rectangle((x0 + 20, y0 + 60, x1 - 20, y0 + 360), 20, fill=WHITE, outline=(210, 214, 222), width=2)
+    d.text(((x0 + x1) / 2, y0 + 170), front, font=R.font(56), fill=DARK_INK, anchor="mm")
+    if flip:
+        d.line((x0 + 50, y0 + 230, x1 - 50, y0 + 230), fill=(210, 214, 222), width=3)
+        d.text(((x0 + x1) / 2, y0 + 290), back, font=R.font(56), fill=R.mix(ACC, 1) if False else (40, 120, 200), anchor="mm")
+    else:
+        d.text(((x0 + x1) / 2, y0 + 290), "想一想…", font=R.font(34, R.MED), fill=(150, 154, 162), anchor="mm")
+    d.rounded_rectangle((x0 + 20, y1 - 110, x1 - 20, y1 - 30), 16, fill=ACC if flip else (200, 204, 212))
+    d.text(((x0 + x1) / 2, y1 - 70), "記得" if flip else "顯示答案", font=R.font(36), fill=(10, 14, 20), anchor="mm")
+    # growing intervals
+    gx = W / 2 + 150
+    d.text((gx + 120, TOP + 40), "下次複習", font=R.font(36, R.MED), fill=R.MUTED, anchor="mm")
+    for i, s in enumerate(sc.get("steps", ["1 天後", "3 天後", "1 週後", "1 個月後"])):
+        yy = TOP + 120 + i * 120
+        a = 1 if hook else min(1, max(0, (t - 0.3 - i * 0.5) / 0.3))
+        pill(d, gx + 120, yy, s, R.mix(ACC, a), R.mix((10, 14, 20), a), 40)
+        if i < 3:
+            d.text((gx + 120, yy + 60), "↓", font=R.font(34), fill=R.mix(R.MUTED, a), anchor="mm")
+    note(d, sc.get("note", "示意畫面"))
+
+
+def v_shot(img, d, t, v, sc, hook=False):
+    """Select an area of the screen, then draw an arrow and a box on it."""
+    p = phase(t, v, hook, 0.8)
+    S = (60, TOP - 20, 1020, TOP + 540)
+    a = mac_screen(d, S)
+    mac_window(d, (a[0] + 30, a[1] + 30, a[2] - 30, a[3] - 30), "網頁", (90, 110, 220))
+    x0, y0, x1, y1 = a
+    dim = Image.new("RGBA", (int(x1 - x0), int(y1 - y0)), (0, 0, 0, 120))
+    sel = (x0 + 180, y0 + 110, x0 + 180 + 560 * min(1, p / 0.3), y0 + 110 + 330 * min(1, p / 0.3))
+    img.paste(Image.new("RGB", dim.size, (0, 0, 0)), (int(x0), int(y0)), dim)
+    d2 = ImageDraw.Draw(img)
+    if p >= 0.02:
+        crop = (int(sel[0]), int(sel[1]), int(sel[2]), int(sel[3]))
+        if crop[2] - crop[0] > 2 and crop[3] - crop[1] > 2:
+            clean = Image.new("RGB", (W, H), R.BG)
+            dc = ImageDraw.Draw(clean)
+            mac_screen(dc, S)
+            mac_window(dc, (a[0] + 30, a[1] + 30, a[2] - 30, a[3] - 30), "網頁", (90, 110, 220))
+            img.paste(clean.crop(crop), crop[:2])
+        d2.rectangle(sel, outline=ACC, width=5)
+    if p > 0.4:
+        k = min(1, (p - 0.4) / 0.2)
+        ax0, ay0, ax1, ay1 = sel[2] - 60, sel[3] - 40, sel[0] + 230, sel[1] + 150
+        ex, ey = ax0 + (ax1 - ax0) * k, ay0 + (ay1 - ay0) * k
+        d2.line((ax0, ay0, ex, ey), fill=(248, 81, 73), width=10)
+        if k >= 1:
+            ang = math.atan2(ay1 - ay0, ax1 - ax0)
+            for s in (2.6, -2.6):
+                d2.line((ax1, ay1, ax1 + 40 * math.cos(ang + s), ay1 + 40 * math.sin(ang + s)), fill=(248, 81, 73), width=10)
+    if p > 0.62:
+        d2.rectangle((sel[0] + 30, sel[1] + 80, sel[0] + 230, sel[1] + 150), outline=(248, 81, 73), width=8)
+    if p > 0.75:
+        for i in range(8):
+            for j in range(3):
+                g = 120 + ((i * 7 + j * 13) % 5) * 22
+                bx, by = sel[0] + 40 + i * 28, sel[1] + 220 + j * 28
+                d2.rectangle((bx, by, bx + 27, by + 27), fill=(g, g, g + 10))
+    tools = sc.get("tools", ["A 箭頭", "R 方框", "T 文字", "B 馬賽克"])
+    tx = W / 2 - (len(tools) - 1) * 115
+    for i, s in enumerate(tools):
+        pill(d2, tx + i * 230, S[3] + 55, s, (40, 46, 58) if p < 0.4 else R.mix(ACC, 1 if i == 0 else 0.4), R.INK if p < 0.4 else (10, 14, 20), 32)
+    note(d2, sc.get("note", "示意畫面"))
+
+
+VISUALS = {"devices": v_devices, "typing": v_typing, "upscale": v_upscale, "explorer": v_explorer, "cliplist": v_cliplist, "mirror": v_mirror,
+           "compress": v_compress, "snap": v_snap, "offline": v_offline, "disk": v_disk, "convert": v_convert, "cards": v_cards, "shot": v_shot}
 
 
 def k_hook(img, d, t, v, sc):

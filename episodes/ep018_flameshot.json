@@ -1,0 +1,12 @@
+{
+  "no": 18,
+  "accent": [255, 120, 180],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["截圖順手", "畫箭頭、打馬賽克"], "visual": "shot", "voice": "截图顺手画箭头。", "subs": ["截圖順手畫箭頭"]},
+    {"kind": "demo", "title": "框選要截的範圍", "visual": "shot", "voice": "框选范围，直接在上面画。", "subs": ["框選範圍", "直接在上面畫"]},
+    {"kind": "demo", "title": "按字母切換工具", "keys": ["A", "R", "B"], "keys_sep": " ", "visual": "shot", "voice": "A 是箭头，R 是方框，B 是马赛克，Ctrl C 复制。", "subs": ["A 箭頭、R 方框、B 馬賽克", "Ctrl+C 複製"]},
+    {"kind": "cta2", "name": "Flameshot", "subtitle": "截圖＋標註工具", "urls": ["flameshot.org", "github.com/flameshot-org/flameshot"], "credit": "本片畫面為示意", "voice": "Flame shot，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Flameshot", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "截圖完還要開小畫家畫箭頭？✂️\n\nFlameshot 是免費開源的截圖工具，框選範圍後直接在截圖上標註。\n⌨️ A：箭頭　R：方框　T：文字\n⌨️ B：馬賽克，遮住個資\n⌨️ Ctrl+C 複製，Ctrl+S 存檔\nWindows、macOS、Linux 都能用。\n\n先收藏，常截圖的人一定用得到 📌\n官網：flameshot.org\n專案：github.com/flameshot-org/flameshot\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #截圖 #免費軟體 #電腦技巧"
+}

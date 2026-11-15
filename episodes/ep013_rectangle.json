@@ -1,0 +1,12 @@
+{
+  "no": 13,
+  "accent": [180, 140, 255],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["Mac 視窗", "拖到邊邊就排好"], "visual": "snap", "voice": "视窗拖边就排好。", "subs": ["視窗拖到邊邊就排好"]},
+    {"kind": "demo", "title": "拖到左右邊緣 → 佔一半", "visual": "snap", "voice": "把视窗拖到萤幕左边或右边，自动占一半。", "subs": ["把視窗拖到螢幕左右邊", "自動佔一半"]},
+    {"kind": "demo", "title": "拖到角落 → 佔四分之一", "visual": "snap", "target": "corner", "voice": "拖到角落，就变四分之一。", "subs": ["拖到角落", "就變四分之一"]},
+    {"kind": "cta2", "name": "Rectangle", "subtitle": "Mac 視窗排版工具", "urls": ["rectangleapp.com", "github.com/rxhanson/Rectangle"], "credit": "本片畫面為示意", "voice": "Rectangle，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Rectangle", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "Mac 視窗開一堆，每次都要手動拉大小？🪟\n\nRectangle 是免費開源的 Mac 視窗管理工具，把視窗拖到螢幕邊緣就會自動排好。\n✅ 拖到左邊或右邊：佔半個螢幕\n✅ 拖到角落：佔四分之一\n✅ 拖到最上方：放到最大\n需要 macOS 14 以上，也可以用 Homebrew 安裝：brew install --cask rectangle\n\n先收藏，用 Mac 工作的朋友一定用得到 📌\n官網：rectangleapp.com\n專案：github.com/rxhanson/Rectangle\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #Mac #免費軟體 #電腦技巧"
+}

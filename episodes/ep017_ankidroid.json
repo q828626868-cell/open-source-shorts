@@ -1,0 +1,12 @@
+{
+  "no": 17,
+  "accent": [80, 200, 230],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["背單字", "快忘記時自動考你"], "visual": "cards", "voice": "快忘记时自动考你。", "subs": ["快忘記時自動考你"]},
+    {"kind": "demo", "title": "先想答案，再翻卡", "visual": "cards", "voice": "先想答案再翻卡，记得的，会越来越晚出现。", "subs": ["先想答案再翻卡", "記得的會越來越晚出現"]},
+    {"kind": "demo", "title": "一萬多份現成牌組", "chips": ["和電腦同步"], "visual": "cards", "voice": "有一万多份现成牌组，还能和电脑同步。", "subs": ["一萬多份現成牌組", "還能和電腦同步"]},
+    {"kind": "cta2", "name": "AnkiDroid", "subtitle": "Android 記憶卡片 App", "urls": ["github.com/ankidroid/Anki-Android"], "credit": "本片畫面為示意", "voice": "Anki Droid，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["AnkiDroid", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "單字背了又忘，忘了又背？📚\n\nAnkiDroid 是開源記憶卡片 Anki 的官方 Android 版，用「間隔重複」安排複習：記得的卡片會隔越久才再出現，快忘記時再考你。\n✅ 先想答案，再翻卡\n✅ 超過一萬份現成牌組，也能自己做卡片\n✅ 可透過 AnkiWeb 和電腦版同步\n支援文字、圖片、聲音，也有夜間模式和學習統計。\n\n先收藏，準備考試時用得到 📌\n專案：github.com/ankidroid/Anki-Android\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #背單字 #讀書方法 #手機技巧"
+}

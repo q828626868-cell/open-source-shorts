@@ -1,0 +1,12 @@
+{
+  "no": 12,
+  "accent": [255, 150, 70],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["圖片太大？", "網頁直接壓縮"], "visual": "compress", "before": "4.2 MB", "after": "0.6 MB", "ratio": 0.15, "url_bar": "squoosh.app", "voice": "网页就能压缩图片。", "subs": ["網頁就能壓縮圖片"]},
+    {"kind": "demo", "title": "打開 squoosh.app", "chips": ["免安裝", "選一張圖"], "visual": "compress", "before": "4.2 MB", "after": "0.6 MB", "ratio": 0.15, "url_bar": "squoosh.app", "voice": "打开 squoosh 点 app，选一张图就能压。", "subs": ["打開 squoosh.app", "選一張圖就能壓"]},
+    {"kind": "demo", "title": "圖片不會上傳", "chips": ["在你的裝置上處理"], "visual": "compress", "before": "4.2 MB", "after": "0.6 MB", "ratio": 0.15, "url_bar": "squoosh.app", "voice": "压缩在你的装置上完成，图片不会上传。", "subs": ["壓縮在你的裝置上完成", "圖片不會上傳"]},
+    {"kind": "cta2", "name": "Squoosh", "subtitle": "免安裝的網頁圖片壓縮", "urls": ["squoosh.app", "github.com/GoogleChromeLabs/squoosh"], "credit": "本片畫面為示意", "voice": "Squoosh，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Squoosh", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "照片太大，表單、信箱都傳不上去？📷\n\nSquoosh 是 Google Chrome Labs 的開源圖片壓縮網頁，打開就能用，不用安裝。\n✅ 打開 squoosh.app，選一張圖\n✅ 支援多種格式，壓縮後直接下載\n✅ 圖片在你的裝置上處理，不會傳到伺服器\n官方說明：網站會用 Google Analytics 記錄基本造訪資料和壓縮前後的檔案大小。\n\n先收藏，下次要縮圖就找得到 📌\n網址：squoosh.app\n專案：github.com/GoogleChromeLabs/squoosh\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #免費軟體 #圖片壓縮 #實用工具"
+}

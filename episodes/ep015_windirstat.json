@@ -1,0 +1,12 @@
+{
+  "no": 15,
+  "accent": [255, 110, 110],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["硬碟滿了？", "一眼看出誰最佔空間"], "visual": "disk", "voice": "看谁最占空间。", "subs": ["看誰最佔空間"]},
+    {"kind": "demo", "title": "選好要掃描的磁碟", "chips": ["C:", "D:"], "visual": "disk", "voice": "选好磁碟扫描，色块越大，档案越大。", "subs": ["選好磁碟掃描", "色塊越大，檔案越大"]},
+    {"kind": "demo", "title": "打開 Largest Files", "visual": "disk", "voice": "打开最大档案清单，确认后再清理。", "subs": ["打開最大檔案清單", "確認後再清理"]},
+    {"kind": "cta2", "name": "WinDirStat", "subtitle": "Windows 硬碟空間分析", "urls": ["windirstat.net", "github.com/windirstat/windirstat"], "credit": "本片畫面為示意", "voice": "Win Dir Stat，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["WinDirStat", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "C 槽又紅了，卻不知道是誰佔空間？💽\n\nWinDirStat 是 Windows 上免費開源的硬碟空間分析工具，用色塊圖一眼看出大檔案在哪。\n✅ 選好要掃描的磁碟或資料夾\n✅ 色塊越大，代表檔案越大，點一下就能找到位置\n✅ 打開 Largest Files 看最大的檔案清單\n可以從 Microsoft Store 安裝，或用 winget install -e --id WinDirStat.WinDirStat。\n⚠️ 刪除前請先確認檔案用途，不確定的不要刪。\n\n先收藏，下次硬碟滿了就找得到 📌\n官網：windirstat.net\n專案：github.com/windirstat/windirstat\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #Windows #免費軟體 #電腦技巧"
+}

@@ -1,0 +1,12 @@
+{
+  "no": 16,
+  "accent": [250, 200, 70],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["影片播不了？", "轉成 MP4 就好"], "visual": "convert", "voice": "转 MP4 就能播。", "subs": ["轉 MP4 就能播"]},
+    {"kind": "demo", "title": "拖進影片，選 Preset", "chips": ["Fast 1080p30"], "visual": "convert", "voice": "把影片拖进去，预设选 Fast 1080p30 就很好用。", "subs": ["把影片拖進去", "預設選 Fast 1080p30 就很好用"]},
+    {"kind": "demo", "title": "按 Start 開始轉檔", "chips": ["MP4", "MKV", "WebM"], "visual": "convert", "voice": "按 Start，转好的影片，手机电视都能播。", "subs": ["按 Start", "轉好的影片手機電視都能播"]},
+    {"kind": "cta2", "name": "HandBrake", "subtitle": "免費開源的影片轉檔工具", "urls": ["handbrake.fr", "github.com/HandBrake/HandBrake"], "credit": "本片畫面為示意", "voice": "HandBrake，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["HandBrake", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "影片在手機、電視上播不了，格式不對？🎬\n\nHandBrake 是免費開源的影片轉檔工具，把你手上的影片轉成手機、平板、電視都能播的新檔案。\n✅ 按 Open Source 或直接把影片拖進視窗\n✅ 選 Preset，官方說預設的 Fast 1080p30 速度快、相容性高\n✅ 按 Start 開始轉檔，可輸出 MP4、MKV、WebM\nWindows、Mac、Linux 都能用。請只轉檔你有權使用的影片。\n\n先收藏，下次影片打不開就找得到 📌\n官網：handbrake.fr\n專案：github.com/HandBrake/HandBrake\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #影片剪輯 #免費軟體 #電腦技巧"
+}

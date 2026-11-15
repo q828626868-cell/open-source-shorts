@@ -1,0 +1,12 @@
+{
+  "no": 14,
+  "accent": [90, 205, 120],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["沒網路", "也能查維基百科"], "visual": "offline", "voice": "没网路也能查维基。", "subs": ["沒網路也能查維基"]},
+    {"kind": "demo", "title": "有網路時先下載", "visual": "offline", "screen": "library", "voice": "有网路时，先下载维基百科、TED 演讲。", "subs": ["有網路時先下載", "維基百科、TED 演講"]},
+    {"kind": "demo", "title": "飛航模式照樣看", "chips": ["手機", "電腦"], "visual": "offline", "voice": "搭飞机、收讯差，照样能看。手机电脑都有。", "subs": ["搭飛機、收訊差照樣能看", "手機、電腦都有"]},
+    {"kind": "cta2", "name": "Kiwix", "subtitle": "離線閱讀維基百科", "urls": ["kiwix.org", "github.com/kiwix"], "credit": "本片畫面為示意", "voice": "Kiwix，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["Kiwix", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "搭飛機、出國收訊差，想查資料卻沒網路？✈️\n\nKiwix 是免費開源的離線閱讀器，主要用來離線看維基百科。\n✅ 有網路時先選好要下載的內容\n✅ 維基百科、維基詞典、TED 演講等都有\n✅ 飛航模式下照樣能看\nAndroid、iPhone、iPad 都有 App，Windows、Mac、Linux 也能用。內容檔可能不小，建議連 Wi-Fi 再下載。\n\n先收藏，出國前記得先下載 📌\n官網：kiwix.org\n專案：github.com/kiwix\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #維基百科 #出國必備 #手機技巧"
+}
