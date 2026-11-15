@@ -490,7 +490,68 @@ def v_cliplist(img, d, t, v, sc, hook=False):
     note(d, sc.get("note", "示意畫面"))
 
 
-VISUALS = {"devices": v_devices, "typing": v_typing, "upscale": v_upscale, "explorer": v_explorer, "cliplist": v_cliplist}
+def screen_chat(d, box, t, typed, sent, cursor=None):
+    """Simple chat app screen, drawn relative to the box so it can be mirrored at any size."""
+    x0, y0, x1, y1 = box
+    s = (x1 - x0) / 220
+    d.rectangle(box, fill=(236, 238, 242))
+    d.rectangle((x0, y0, x1, y0 + 44 * s), fill=R.mix(ACC, 0.9))
+    d.text((x0 + 14 * s, y0 + 22 * s), "小美", font=R.font(int(22 * s)), fill=(10, 14, 20), anchor="lm")
+    f = R.font(int(20 * s), R.MED)
+    b = ("晚餐吃什麼？", "火鍋好嗎")
+    y = y0 + 60 * s
+    for m in b:
+        tw = d.textlength(m, font=f)
+        d.rounded_rectangle((x0 + 10 * s, y, x0 + 26 * s + tw, y + 36 * s), 12 * s, fill=WHITE)
+        d.text((x0 + 18 * s, y + 18 * s), m, font=f, fill=DARK_INK, anchor="lm")
+        y += 46 * s
+    if sent:
+        tw = d.textlength(sent, font=f)
+        d.rounded_rectangle((x1 - 26 * s - tw, y, x1 - 10 * s, y + 36 * s), 12 * s, fill=ACC)
+        d.text((x1 - 18 * s, y + 18 * s), sent, font=f, fill=(10, 14, 20), anchor="rm")
+    iy = y1 - 44 * s
+    d.rounded_rectangle((x0 + 8 * s, iy, x1 - 8 * s, y1 - 8 * s), 14 * s, fill=WHITE, outline=(190, 194, 202), width=max(1, int(2 * s)))
+    d.text((x0 + 18 * s, iy + 18 * s), typed or "輸入訊息…", font=f, fill=DARK_INK if typed else (160, 164, 172), anchor="lm")
+    if typed and int(t * 3) % 2 == 0:
+        cx = x0 + 20 * s + d.textlength(typed, font=f)
+        d.rectangle((cx, iy + 6 * s, cx + 2 * s, iy + 30 * s), fill=DARK_INK)
+
+
+def v_mirror(img, d, t, v, sc, hook=False):
+    """Android phone mirrored into a window on a computer, controlled with mouse and keyboard."""
+    msg = sc.get("msg", "好啊，七點見！")
+    period = max(2.4, v * 0.95)
+    p = ((t + (period * 0.6 if hook else 0)) / period) % 1
+    n = int(len(msg) * min(1, max(0, (p - 0.15) / 0.5)))
+    typed, sent = (msg[:n], None) if p < 0.75 else ("", msg)
+    pc, lc = (185, TOP + 340), (650, TOP + 285)
+    pb = phone_box(d, *pc, w=210, h=400)
+    lw, lh = 640, 430
+    lb = laptop_box(d, *lc, w=lw, h=lh, edge=ACC)
+    d.rectangle(lb, fill=(40, 46, 58))
+    # mirrored phone window centred on the computer screen
+    wh = lb[3] - lb[1] - 20
+    ww = int(wh * (pb[2] - pb[0]) / (pb[3] - pb[1]))
+    wx0 = (lb[0] + lb[2]) / 2 - ww / 2
+    wb = (wx0, lb[1] + 10 + 26, wx0 + ww, lb[1] + 10 + wh)
+    d.rectangle((wx0, lb[1] + 10, wx0 + ww, lb[1] + 36), fill=(70, 76, 90))
+    d.text((wx0 + ww / 2, lb[1] + 23), "手機畫面", font=R.font(18, R.MED), fill=R.INK, anchor="mm")
+    screen_chat(d, pb, t, typed, sent)
+    screen_chat(d, wb, t, typed, sent)
+    # mouse cursor heading to the input box
+    cx = wb[0] + ww * (0.75 - 0.35 * min(1, p / 0.15))
+    cy = wb[3] - 22 - 120 * (1 - min(1, p / 0.15))
+    d.polygon([(cx, cy), (cx, cy + 40), (cx + 11, cy + 30), (cx + 20, cy + 48), (cx + 27, cy + 44), (cx + 18, cy + 27), (cx + 32, cy + 27)], fill=WHITE, outline=(10, 14, 20))
+    # USB cable from phone to computer
+    x_a, y_a = pc[0], pc[1] + 200
+    x_b, y_b = lc[0] - lw / 2 - 40, lc[1] + lh / 2 + 20
+    pts = [(x_a + (x_b - x_a) * k / 20, y_a + 40 * math.sin(k / 20 * math.pi) + (y_b - y_a) * k / 20) for k in range(21)]
+    d.line(pts, fill=(150, 156, 168), width=8)
+    d.text(((x_a + x_b) / 2 + 10, y_a + 85), "USB", font=R.font(30), fill=ACC, anchor="mm")
+    note(d, sc.get("note", "示意畫面"))
+
+
+VISUALS = {"devices": v_devices, "typing": v_typing, "upscale": v_upscale, "explorer": v_explorer, "cliplist": v_cliplist, "mirror": v_mirror}
 
 
 def k_hook(img, d, t, v, sc):

@@ -1,0 +1,12 @@
+{
+  "no": 11,
+  "accent": [120, 180, 255],
+  "label_last": true,
+  "scenes": [
+    {"kind": "hook", "big": ["手機畫面", "直接在電腦上操作"], "visual": "mirror", "msg": "好啊，七點見！", "voice": "手机画面投到电脑。", "subs": ["手機畫面投到電腦"]},
+    {"kind": "demo", "title": "開 USB 偵錯，接上電腦", "chips": ["Android 5.0 以上", "不用裝 App"], "visual": "mirror", "msg": "好啊，七點見！", "voice": "手机开启 USB 侦错，接上电脑，执行就好。", "subs": ["手機開啟 USB 偵錯", "接上電腦，執行就好"]},
+    {"kind": "demo", "title": "用鍵盤滑鼠回訊息", "chips": ["滑鼠點", "鍵盤打字", "複製貼上同步"], "visual": "mirror", "msg": "好啊，七點見！", "voice": "用滑鼠点，用键盘打字，复制贴上也会同步。", "subs": ["用滑鼠點、用鍵盤打字", "複製貼上也會同步"]},
+    {"kind": "cta2", "name": "scrcpy", "subtitle": "Android 畫面投到電腦（念 screen copy）", "urls": ["github.com/Genymobile/scrcpy"], "credit": "本片畫面為示意", "voice": "screen copy，网址在说明栏。追踪我，每天一个开源好物。", "subs": ["scrcpy", "網址在說明欄", "追蹤我", "每天一個開源好物"]}
+  ],
+  "caption": "手機訊息要回，還得一直低頭拿手機？📱\n\nscrcpy（念作 screen copy）能把 Android 手機畫面投到電腦上，直接用鍵盤和滑鼠操作。\n✅ 手機開啟「USB 偵錯」，用傳輸線接上電腦\n✅ 手機不用另外裝 App，也不需要 root\n✅ 複製貼上雙向同步，滑鼠右鍵是「返回」\nWindows、macOS、Linux 都能用；需要 Android 5.0 以上，聲音轉送需 Android 11 以上。也支援 Wi-Fi 無線連線。\n⚠️ 官方說明只有 GitHub 這個來源，不要從其他網站下載。\n\n先收藏，下次要用電腦操作手機就找得到 📌\n專案：github.com/Genymobile/scrcpy\n（本片配音由 AI 合成，畫面為示意）\n\n#開源 #GitHub #Android #免費軟體 #手機技巧"
+}
